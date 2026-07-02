@@ -756,9 +756,14 @@ button {
     z-index: 1;
   }
 
+  /* Chaque forme flotte doucement (animation) et dérive avec le
+     défilement (translate piloté par --scrollY depuis app.js). */
   .side-decor__shape {
     position: absolute;
     border-radius: 50%;
+    translate: 0 calc(var(--scrollY, 0) * var(--speed, 0) * 1px);
+    animation: decor-float var(--float-duration, 9s) ease-in-out var(--float-delay, 0s) infinite alternate;
+    will-change: translate, transform;
   }
 
   .side-decor__shape--orange {
@@ -768,6 +773,10 @@ button {
     left: -65px;
     top: 38%;
     clip-path: inset(0 0 0 50%);
+    --speed: -0.05;
+    --float-duration: 11s;
+    --float-x: 10px;
+    --float-y: -18px;
   }
 
   .side-decor__shape--lime {
@@ -777,6 +786,11 @@ button {
     right: -85px;
     top: 26%;
     clip-path: inset(0 50% 0 0);
+    --speed: 0.07;
+    --float-duration: 13s;
+    --float-delay: -4s;
+    --float-x: -12px;
+    --float-y: 20px;
   }
 
   .side-decor__shape--lavender {
@@ -786,6 +800,12 @@ button {
     left: 14px;
     bottom: 10%;
     clip-path: inset(50% 0 0 0);
+    --speed: -0.09;
+    --float-duration: 9s;
+    --float-delay: -2s;
+    --float-x: 14px;
+    --float-y: -12px;
+    --float-rot: 10deg;
   }
 
   .side-decor__shape--peach {
@@ -794,6 +814,11 @@ button {
     background: var(--peach);
     right: 18px;
     bottom: 26%;
+    --speed: 0.08;
+    --float-duration: 8s;
+    --float-delay: -6s;
+    --float-x: -10px;
+    --float-y: -16px;
   }
 
   .side-decor__shape--blue {
@@ -802,6 +827,11 @@ button {
     background: var(--blue);
     left: 30px;
     top: 62%;
+    --speed: -0.11;
+    --float-duration: 7s;
+    --float-delay: -3s;
+    --float-x: 8px;
+    --float-y: 14px;
   }
 
   .side-decor__shape--teal {
@@ -810,6 +840,20 @@ button {
     background: var(--teal);
     right: -60px;
     bottom: -60px;
+    clip-path: inset(0 0 50% 50%);
+    --speed: 0.04;
+    --float-duration: 12s;
+    --float-delay: -8s;
+    --float-x: -8px;
+    --float-y: -14px;
+  }
+
+  @keyframes decor-float {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to {
+      transform: translate(var(--float-x, 8px), var(--float-y, -16px))
+                 rotate(var(--float-rot, 0deg));
+    }
   }
 }
 

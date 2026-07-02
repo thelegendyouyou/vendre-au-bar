@@ -269,6 +269,26 @@ newOrderBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// ----- Parallaxe des formes décoratives (desktop) -----
+
+const decor = document.querySelector(".side-decor");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (decor && !reducedMotion.matches) {
+  let ticking = false;
+  const updateParallax = () => {
+    decor.style.setProperty("--scrollY", window.scrollY);
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    }
+  }, { passive: true });
+  updateParallax();
+}
+
 renderChips();
 renderMenu();
 renderCart();
