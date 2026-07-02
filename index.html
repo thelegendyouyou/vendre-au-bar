@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Bar du Théâtre Desjardins — Commander</title>
+<meta name="description" content="Commandez vos consommations pour le bar du Théâtre Desjardins, directement depuis votre siège.">
+<meta name="theme-color" content="#3E5AE8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%233E5AE8%22/><circle cx=%2238%22 cy=%2250%22 r=%2220%22 fill=%22white%22/><path d=%22M45 20a30 30 0 010 60 30 30 0 010-60z%22 fill=%22%23D8E438%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__blob hero__blob--orange" aria-hidden="true"></div>
+  <div class="hero__blob hero__blob--peach" aria-hidden="true"></div>
+  <div class="hero__blob hero__blob--lime" aria-hidden="true"></div>
+
+  <div class="logo" aria-label="Théâtre Desjardins">
+    <span class="logo__mark" aria-hidden="true">
+      <span class="logo__dot"></span>
+      <span class="logo__crescent"></span>
+    </span>
+    <span class="logo__text">
+      Théâtre<br>Desjardins
+      <small>LaSalle · Montréal</small>
+    </span>
+  </div>
+
+  <div class="hero__content">
+    <h1>Bienvenue au bar<br>du Théâtre Desjardins&nbsp;!</h1>
+    <p class="hero__subtitle">Commandez depuis votre siège, on vous apporte ça en salle.</p>
+  </div>
+</header>
+
+<main>
+  <div class="chips" id="chips" role="tablist" aria-label="Catégories">
+    <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">Tout</button>
+    <button class="chip" data-filter="Bières" role="tab" aria-selected="false">Bières</button>
+    <button class="chip" data-filter="Vins" role="tab" aria-selected="false">Vins</button>
+    <button class="chip" data-filter="Cocktails signatures" role="tab" aria-selected="false">Cocktails</button>
+    <button class="chip" data-filter="Prêts-à-boire" role="tab" aria-selected="false">Prêts-à-boire</button>
+    <button class="chip" data-filter="Cidres" role="tab" aria-selected="false">Cidres</button>
+    <button class="chip" data-filter="Boissons" role="tab" aria-selected="false">Boissons</button>
+  </div>
+
+  <ul class="menu" id="menu"></ul>
+
+  <p class="disclaimer">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>Une pièce d'identité pourra être demandée.</p>
+</main>
+
+<button class="cart-bar" id="cartBar" hidden>
+  <span class="cart-bar__count" id="cartCount">0</span>
+  <span class="cart-bar__label">Voir ma commande</span>
+  <span class="cart-bar__total" id="cartTotal">0,00&nbsp;$</span>
+</button>
+
+<div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+
+<section class="sheet" id="cartSheet" hidden aria-label="Votre commande">
+  <div class="sheet__handle"></div>
+  <div class="sheet__header">
+    <h2>Votre commande</h2>
+    <button class="sheet__close" id="closeCart" aria-label="Fermer">✕</button>
+  </div>
+
+  <ul class="cart-list" id="cartList"></ul>
+
+  <p class="cart-empty" id="cartEmpty">Votre panier est vide pour l'instant.</p>
+
+  <div class="sheet__form">
+    <label for="tableNumber">Numéro de table / siège</label>
+    <input type="text" inputmode="numeric" id="tableNumber" placeholder="ex. 14" maxlength="6">
+  </div>
+
+  <div class="sheet__total">
+    <span>Total</span>
+    <strong id="sheetTotal">0,00&nbsp;$</strong>
+  </div>
+
+  <button class="btn-confirm" id="confirmOrder" disabled>Confirmer la commande</button>
+  <p class="sheet__note">Version test — la commande n'est pas encore transmise au bar.</p>
+</section>
+
+<section class="confirm" id="confirmScreen" hidden aria-label="Confirmation de commande">
+  <div class="confirm__card">
+    <div class="confirm__badge">✓</div>
+    <h2>Commande envoyée&nbsp;!</h2>
+    <p class="confirm__order-id" id="orderId"></p>
+    <p class="confirm__table">Table <strong id="confirmTable"></strong></p>
+    <ul class="confirm__list" id="confirmList"></ul>
+    <div class="confirm__total">
+      <span>Total</span>
+      <strong id="confirmTotal"></strong>
+    </div>
+    <p class="confirm__msg">On vous apporte ça en salle. Bon spectacle&nbsp;!</p>
+    <button class="btn-confirm btn-confirm--ghost" id="newOrder">Nouvelle commande</button>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
