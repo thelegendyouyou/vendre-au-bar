@@ -1,60 +1,149 @@
-const MENU = [
+const SECTIONS = [
   {
-    id: "stella",
-    name: "Stella",
-    category: "Bières",
-    desc: "",
-    price: 11,
-    accent: "#3E5AE8"
+    id: "alcools",
+    title: "Alcools",
+    theme: "blue",
+    subgroups: [
+      {
+        label: "Bières",
+        items: [
+          { id: "stella", name: "Stella", price: 11 },
+          { id: "corona", name: "Corona", price: 11 },
+          { id: "biere-al", name: "Bière AL", price: 8 },
+          { id: "benelux-neipa", name: "Benelux NEIPA (IPA)", price: 9.5 },
+          { id: "fanelli", name: "Fanelli", desc: "Rousse, blanche ou blonde", price: 8 },
+          { id: "biere-sans-alcool", name: "Bière sans alcool", price: 6 }
+        ]
+      },
+      {
+        label: "Cocktails simples",
+        items: [
+          { id: "cocktail-simple", name: "Cocktail simple", desc: "Au choix — demandez à votre serveur", price: 8 }
+        ]
+      },
+      {
+        label: "Prêts-à-boire",
+        items: [
+          { id: "amaretto-sour-peach", name: "Amaretto Sour Peach", price: 7.5 },
+          { id: "paloma", name: "Paloma", price: 7.5 },
+          { id: "clamato", name: "Clamato", price: 7 }
+        ]
+      },
+      {
+        label: "Cidre",
+        items: [
+          { id: "rabaska", name: "Rabaska", price: 7.5 }
+        ]
+      },
+      {
+        label: "Vins rouges",
+        items: [
+          { id: "pinot-noir", name: "Pinot Noir", price: 9 },
+          { id: "sangre-de-toro", name: "Sangre De Toro", price: 7 }
+        ]
+      },
+      {
+        label: "Vins blancs",
+        items: [
+          { id: "chardonnay", name: "Chardonnay", price: 9 },
+          { id: "pinot-grigio", name: "Pinot Grigio", price: 7 }
+        ]
+      }
+    ]
   },
   {
-    id: "chardonnay",
-    name: "Chardonnay",
-    category: "Vins",
-    desc: "Vin blanc",
-    price: 9,
-    accent: "#C7AFD9"
+    id: "boissons",
+    title: "Alcools et boissons",
+    theme: "teal",
+    subgroups: [
+      {
+        label: "Digestif",
+        items: [
+          { id: "digestif", name: "Digestif", desc: "Prix variés — demandez au bar", price: null }
+        ]
+      },
+      {
+        label: "Cafés alcoolisés",
+        items: [
+          { id: "cafe-alcoolise", name: "Café alcoolisé", price: 7 }
+        ]
+      },
+      {
+        label: "Boissons et jus",
+        items: [
+          { id: "coke", name: "Coke", price: 3 },
+          { id: "coke-diete", name: "Coke Diète", price: 3 },
+          { id: "7up", name: "7up", price: 3 },
+          { id: "ginger-ale", name: "Ginger Ale", price: 3 },
+          { id: "montellier", name: "Montellier", price: 3 },
+          { id: "jus", name: "Jus", desc: "Orange, pomme ou canneberge", price: 3 },
+          { id: "eau", name: "Bouteille d'eau réutilisable", price: 6 }
+        ]
+      },
+      {
+        label: "Boissons chaudes",
+        items: [
+          { id: "capuccino", name: "Capuccino", price: 4 },
+          { id: "latte", name: "Latte", price: 4 },
+          { id: "americano", name: "Americano", price: 3 },
+          { id: "cafe-filtre", name: "Café filtre", price: 2.5 },
+          { id: "expresso", name: "Expresso simple", price: 2.5 },
+          { id: "the", name: "Thé", price: 2.5 },
+          { id: "chocolat-chaud", name: "Chocolat chaud", price: 2.5 }
+        ]
+      }
+    ]
   },
   {
-    id: "paloma",
-    name: "Paloma",
-    category: "Prêts-à-boire",
-    desc: "Cocktail prêt-à-boire",
-    price: 7.5,
-    accent: "#F2801F"
+    id: "cocktails-signatures",
+    title: "Cocktails signatures",
+    theme: "lavender",
+    subgroups: [
+      {
+        label: null,
+        items: [
+          { id: "passion-grimaldi", name: "Le Passion Grimaldi", desc: "Liqueur passion, gin Cirka, tonic", price: 10 },
+          { id: "margarita-epice", name: "Le Margarita Épicé", desc: "Vodka au chili, jus d'orange, ginger ale, jus de lime", price: 9 },
+          { id: "rouge-savoureux", name: "Le Rouge Savoureux", desc: "Tequila, jus de canneberge, grenadine, lime", price: 10 },
+          { id: "opera", name: "L'Opéra", desc: "Vodka, ginger ale, lime", price: 9 },
+          { id: "royal-menthe", name: "Le Royal Menthe", desc: "Crème de menthe, amaretto, tonic", price: 10 },
+          { id: "cour-et-jardin", name: "Le Cour et Jardin", desc: "Vodka, liqueur menthe, soda, lime", price: 9 }
+        ]
+      }
+    ]
   },
   {
-    id: "rabaska",
-    name: "Rabaska",
-    category: "Cidres",
-    desc: "Cidre",
-    price: 7.5,
-    accent: "#5C9AA0"
-  },
-  {
-    id: "passion-grimaldi",
-    name: "Le Passion Grimaldi",
-    category: "Cocktails signatures",
-    desc: "Liqueur passion, gin Cirka, tonic",
-    price: 10,
-    accent: "#5C9AA0"
-  },
-  {
-    id: "coke",
-    name: "Coke",
-    category: "Boissons",
-    desc: "",
-    price: 3,
-    accent: "#3E5AE8"
+    id: "grignotines",
+    title: "Grignotines",
+    theme: "cream",
+    subgroups: [
+      {
+        label: null,
+        items: [
+          { id: "popcorn", name: "Pop Corn", price: 4 },
+          { id: "croustilles", name: "Croustilles", price: 3 },
+          { id: "bonbon", name: "Bonbon", price: 3 }
+        ]
+      }
+    ]
   }
 ];
 
-const money = (n) => n.toFixed(2).replace(".", ",") + " $";
+const ITEMS_BY_ID = {};
+SECTIONS.forEach((section) => {
+  section.subgroups.forEach((group) => {
+    group.items.forEach((item) => {
+      ITEMS_BY_ID[item.id] = item;
+    });
+  });
+});
+
+const money = (n) => n.toFixed(2).replace(".", ",") + " $";
 
 const cart = {}; // id -> qty
 
-const menuEl = document.getElementById("menu");
-const chipsEl = document.getElementById("chips");
+const jumpnavEl = document.getElementById("jumpnav");
+const menuRootEl = document.getElementById("menuRoot");
 const cartBar = document.getElementById("cartBar");
 const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
@@ -63,43 +152,67 @@ const cartSheet = document.getElementById("cartSheet");
 const cartList = document.getElementById("cartList");
 const cartEmpty = document.getElementById("cartEmpty");
 const sheetTotal = document.getElementById("sheetTotal");
-const tableInput = document.getElementById("tableNumber");
+const nameInput = document.getElementById("customerName");
 const confirmBtn = document.getElementById("confirmOrder");
 const closeCartBtn = document.getElementById("closeCart");
 const confirmScreen = document.getElementById("confirmScreen");
 const newOrderBtn = document.getElementById("newOrder");
 
-function renderMenu() {
-  menuEl.innerHTML = MENU.map((item) => `
-    <li class="item" style="--accent:${item.accent}" data-category="${item.category}">
-      <div class="item__body">
-        <span class="item__category">${item.category}</span>
-        <p class="item__name">${item.name}</p>
-        ${item.desc ? `<p class="item__desc">${item.desc}</p>` : ""}
-        <p class="item__price">${money(item.price)}</p>
-      </div>
-      <div class="item__controls" data-controls="${item.id}"></div>
-    </li>
-  `).join("");
-  MENU.forEach((item) => renderControls(item.id));
-}
-
-function renderControls(id) {
-  const target = menuEl.querySelector(`[data-controls="${id}"]`);
-  const qty = cart[id] || 0;
-  if (qty === 0) {
-    target.innerHTML = `<button class="add-btn" data-add="${id}">Ajouter</button>`;
-  } else {
-    target.innerHTML = `
-      <div class="stepper">
-        <button data-dec="${id}" aria-label="Retirer un ${id}">–</button>
-        <span>${qty}</span>
-        <button data-inc="${id}" aria-label="Ajouter un ${id}">+</button>
-      </div>`;
+function controlsHtml(item) {
+  if (item.price == null) {
+    return `<span class="row__note">Prix variés</span>`;
   }
+  const qty = cart[item.id] || 0;
+  if (qty === 0) {
+    return `<button class="add-btn-sm" data-add="${item.id}" aria-label="Ajouter ${item.name}">+</button>`;
+  }
+  return `
+    <div class="stepper stepper--sm">
+      <button data-dec="${item.id}" aria-label="Retirer un ${item.name}">–</button>
+      <span>${qty}</span>
+      <button data-inc="${item.id}" aria-label="Ajouter un ${item.name}">+</button>
+    </div>`;
 }
 
-menuEl.addEventListener("click", (e) => {
+function renderMenu() {
+  jumpnavEl.innerHTML = SECTIONS.map((s, i) => `
+    <button class="chip${i === 0 ? " is-active" : ""}" data-jump="${s.id}">${s.title}</button>
+  `).join("");
+
+  menuRootEl.innerHTML = SECTIONS.map((section) => `
+    <section class="menu-section menu-section--${section.theme}" id="${section.id}">
+      <div class="menu-section__inner">
+        <h2 class="menu-section__title">${section.title}</h2>
+        ${section.subgroups.map((group) => `
+          <div class="subgroup">
+            ${group.label ? `<span class="pill-label">${group.label}</span>` : ""}
+            <ul class="rows">
+              ${group.items.map((item) => `
+                <li class="row">
+                  <div class="row__text">
+                    <p class="row__name">${item.name}</p>
+                    ${item.desc ? `<p class="row__desc">${item.desc}</p>` : ""}
+                  </div>
+                  <div class="row__right">
+                    ${item.price != null ? `<span class="row__price">${money(item.price)}</span>` : ""}
+                    <span data-controls="${item.id}">${controlsHtml(item)}</span>
+                  </div>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `).join("");
+}
+
+function updateControls(id) {
+  const target = menuRootEl.querySelector(`[data-controls="${id}"]`);
+  if (target) target.innerHTML = controlsHtml(ITEMS_BY_ID[id]);
+}
+
+menuRootEl.addEventListener("click", (e) => {
   const add = e.target.closest("[data-add]");
   const inc = e.target.closest("[data-inc]");
   const dec = e.target.closest("[data-dec]");
@@ -111,15 +224,12 @@ menuEl.addEventListener("click", (e) => {
 function setQty(id, qty) {
   if (qty <= 0) delete cart[id];
   else cart[id] = qty;
-  renderControls(id);
+  updateControls(id);
   renderCart();
 }
 
 function cartEntries() {
-  return Object.entries(cart).map(([id, qty]) => ({
-    ...MENU.find((m) => m.id === id),
-    qty
-  }));
+  return Object.entries(cart).map(([id, qty]) => ({ ...ITEMS_BY_ID[id], qty }));
 }
 
 function cartTotalValue() {
@@ -179,41 +289,39 @@ sheetBackdrop.addEventListener("click", closeSheet);
 
 function validateForm() {
   const hasItems = Object.keys(cart).length > 0;
-  const hasTable = tableInput.value.trim().length > 0;
-  confirmBtn.disabled = !(hasItems && hasTable);
+  const hasName = nameInput.value.trim().length > 0;
+  confirmBtn.disabled = !(hasItems && hasName);
 }
 
-tableInput.addEventListener("input", validateForm);
+nameInput.addEventListener("input", validateForm);
 
-// ----- Chips filter -----
+// ----- Jump nav + scroll-spy -----
 
-chipsEl.addEventListener("click", (e) => {
-  const chip = e.target.closest(".chip");
+jumpnavEl.addEventListener("click", (e) => {
+  const chip = e.target.closest("[data-jump]");
   if (!chip) return;
-  chipsEl.querySelectorAll(".chip").forEach((c) => {
-    c.classList.remove("is-active");
-    c.setAttribute("aria-selected", "false");
-  });
-  chip.classList.add("is-active");
-  chip.setAttribute("aria-selected", "true");
-
-  const filter = chip.dataset.filter;
-  menuEl.querySelectorAll(".item").forEach((li) => {
-    const show = filter === "all" || li.dataset.category === filter;
-    li.dataset.hidden = show ? "false" : "true";
-  });
+  document.getElementById(chip.dataset.jump).scrollIntoView({ behavior: "smooth", block: "start" });
 });
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    jumpnavEl.querySelectorAll(".chip").forEach((c) => {
+      c.classList.toggle("is-active", c.dataset.jump === entry.target.id);
+    });
+  });
+}, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
 
 // ----- Confirm order -----
 
 confirmBtn.addEventListener("click", () => {
   const entries = cartEntries();
   const total = cartTotalValue();
-  const table = tableInput.value.trim();
-  const orderId = "TD-" + Math.floor(1000 + Math.random() * 9000);
+  const name = nameInput.value.trim();
+  const orderId = String(Math.floor(100 + Math.random() * 900));
 
-  document.getElementById("orderId").textContent = "Commande " + orderId;
-  document.getElementById("confirmTable").textContent = table;
+  document.getElementById("confirmName").textContent = name;
+  document.getElementById("orderId").textContent = orderId;
   document.getElementById("confirmTotal").textContent = money(total);
   document.getElementById("confirmList").innerHTML = entries.map((i) => `
     <li><span>${i.qty}× ${i.name}</span><span>${money(i.price * i.qty)}</span></li>
@@ -225,11 +333,17 @@ confirmBtn.addEventListener("click", () => {
 
 newOrderBtn.addEventListener("click", () => {
   Object.keys(cart).forEach((id) => delete cart[id]);
-  tableInput.value = "";
-  MENU.forEach((item) => renderControls(item.id));
+  nameInput.value = "";
+  SECTIONS.forEach((section) =>
+    section.subgroups.forEach((group) =>
+      group.items.forEach((item) => updateControls(item.id))
+    )
+  );
   renderCart();
   confirmScreen.hidden = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 renderMenu();
+document.querySelectorAll(".menu-section").forEach((s) => sectionObserver.observe(s));
 renderCart();

@@ -36,21 +36,11 @@
   </div>
 </header>
 
-<main>
-  <div class="chips" id="chips" role="tablist" aria-label="Catégories">
-    <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">Tout</button>
-    <button class="chip" data-filter="Bières" role="tab" aria-selected="false">Bières</button>
-    <button class="chip" data-filter="Vins" role="tab" aria-selected="false">Vins</button>
-    <button class="chip" data-filter="Cocktails signatures" role="tab" aria-selected="false">Cocktails</button>
-    <button class="chip" data-filter="Prêts-à-boire" role="tab" aria-selected="false">Prêts-à-boire</button>
-    <button class="chip" data-filter="Cidres" role="tab" aria-selected="false">Cidres</button>
-    <button class="chip" data-filter="Boissons" role="tab" aria-selected="false">Boissons</button>
-  </div>
+<nav class="jumpnav" id="jumpnav" aria-label="Sections du menu"></nav>
 
-  <ul class="menu" id="menu"></ul>
+<main id="menuRoot"></main>
 
-  <p class="disclaimer">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>Une pièce d'identité pourra être demandée.</p>
-</main>
+<p class="disclaimer">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>Une pièce d'identité pourra être demandée.</p>
 
 <button class="cart-bar" id="cartBar" hidden>
   <span class="cart-bar__count" id="cartCount">0</span>
@@ -72,8 +62,8 @@
   <p class="cart-empty" id="cartEmpty">Votre panier est vide pour l'instant.</p>
 
   <div class="sheet__form">
-    <label for="tableNumber">Numéro de table / siège</label>
-    <input type="text" inputmode="numeric" id="tableNumber" placeholder="ex. 14" maxlength="6">
+    <label for="customerName">Votre nom</label>
+    <input type="text" autocomplete="name" id="customerName" placeholder="ex. Marie" maxlength="40">
   </div>
 
   <div class="sheet__total">
@@ -88,9 +78,8 @@
 <section class="confirm" id="confirmScreen" hidden aria-label="Confirmation de commande">
   <div class="confirm__card">
     <div class="confirm__badge">✓</div>
-    <h2>Commande envoyée&nbsp;!</h2>
-    <p class="confirm__order-id" id="orderId"></p>
-    <p class="confirm__table">Table <strong id="confirmTable"></strong></p>
+    <h2>Merci, <span id="confirmName"></span>&nbsp;!</h2>
+    <p class="confirm__order-id">Confirmation n° <strong id="orderId"></strong></p>
     <ul class="confirm__list" id="confirmList"></ul>
     <div class="confirm__total">
       <span>Total</span>
