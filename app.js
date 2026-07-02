@@ -73,7 +73,8 @@ const MENU = [
 const CATS_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
 const ITEMS_BY_ID = Object.fromEntries(MENU.map((m) => [m.id, m]));
 
-const money = (n) => n.toFixed(2).replace(".", ",") + " $";
+const moneyFmt = new Intl.NumberFormat("fr-CA", { style: "currency", currency: "CAD" });
+const money = (n) => moneyFmt.format(n);
 
 const cart = {}; // id -> qty
 let activeFilter = "all";
@@ -148,16 +149,24 @@ function updateControls(id) {
   if (target) target.innerHTML = controlsHtml(ITEMS_BY_ID[id]);
 }
 
-chipsEl.addEventListener("click", (e) => {
-  const chip = e.target.closest(".chip");
+function selectFilter(filter) {
+  const chip = chipsEl.querySelector(`[data-filter="${filter}"]`);
   if (!chip) return;
-  activeFilter = chip.dataset.filter;
+  activeFilter = filter;
   chipsEl.querySelectorAll(".chip").forEach((c) => {
     const active = c === chip;
     c.classList.toggle("is-active", active);
     c.setAttribute("aria-pressed", String(active));
   });
   applyFilter();
+  placeDecor();
+  // L'onglet actif est reflété dans l'URL pour pouvoir le partager.
+  history.replaceState(null, "", filter === "all" ? location.pathname : "#" + filter);
+}
+
+chipsEl.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (chip) selectFilter(chip.dataset.filter);
 });
 
 menuEl.addEventListener("click", (e) => {
@@ -269,6 +278,62 @@ newOrderBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// ----- Placement des formes décoratives (desktop) -----
+// Réparties selon la hauteur réelle de la page : chaque onglet a une
+// hauteur différente, on recalcule à chaque filtre et redimensionnement.
+
+const decor = document.querySelector(".side-decor");
+
+function placeDecor() {
+  if (!decor) return;
+
+  const heroH = document.querySelector(".hero").offsetHeight;
+  // Fin réelle du contenu : le texte légal sous le menu. On ne se base
+  // pas sur la hauteur du body, que les formes elles-mêmes allongent.
+  const disclaimer = document.querySelector(".disclaimer");
+  const contentBottom = disclaimer.getBoundingClientRect().bottom + window.scrollY;
+
+  // Bande utile : sous le héro (qui a déjà ses propres formes).
+  const bandTop = heroH + 100;
+  const bandH = contentBottom - bandTop - 40;
+
+  // Le sarcelle reste épinglé au coin inférieur de la page.
+  const teal = decor.querySelector(".side-decor__shape--teal");
+  teal.style.top = Math.round(contentBottom - teal.offsetHeight / 2) + "px";
+  teal.style.bottom = "auto";
+
+  const shapes = decor.querySelectorAll(".side-decor__shape:not(.side-decor__shape--teal)");
+  const visible = Math.min(shapes.length, Math.max(1, Math.floor(bandH / 300)));
+
+  shapes.forEach((shape, i) => {
+    if (i < visible) {
+      shape.style.display = "";
+      const center = bandTop + ((i + 0.5) / visible) * bandH;
+      shape.style.top = Math.round(center - shape.offsetHeight / 2) + "px";
+      shape.style.bottom = "auto";
+    } else {
+      shape.style.display = "none";
+    }
+  });
+}
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(placeDecor, 150);
+});
+
+// La hauteur finale dépend des polices chargées.
+window.addEventListener("load", placeDecor);
+
 renderChips();
 renderMenu();
 renderCart();
+
+// Ouvre directement la catégorie présente dans l'URL (ex. #vins).
+const initialFilter = location.hash.slice(1);
+if (initialFilter && CATS_BY_ID[initialFilter]) {
+  selectFilter(initialFilter);
+} else {
+  placeDecor();
+}

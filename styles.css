@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --blue: #3E5AE8;
   --blue-dark: #2E45C4;
   --lavender: #C7AFD9;
@@ -46,11 +47,13 @@ h1, h2 {
   line-height: 1;
   margin: 0;
   letter-spacing: 0.2px;
+  text-wrap: balance;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
+  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -280,6 +283,14 @@ button {
   font-size: 14.5px;
   color: var(--ink);
   margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.cart-bar__total,
+.sheet__total strong,
+.confirm__total strong,
+.cart-row__price {
+  font-variant-numeric: tabular-nums;
 }
 
 .item__note {
@@ -425,6 +436,7 @@ button {
   max-height: 82vh;
   display: flex;
   flex-direction: column;
+  overscroll-behavior: contain;
   box-shadow: 0 -10px 40px rgba(0,0,0,0.25);
   animation: slideUp 0.25s cubic-bezier(.32,.72,0,1) forwards;
 }
@@ -467,6 +479,7 @@ button {
   margin: 0;
   padding: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   gap: 10px;
