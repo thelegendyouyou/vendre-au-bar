@@ -670,13 +670,21 @@ button {
 
 .btn-confirm--ghost:hover:not(:disabled) { background: #2c2a31; }
 
+/* ---------- SIDE DECOR (desktop only) ---------- */
+
+.side-decor { display: none; }
+
 /* ---------- DESKTOP ---------- */
 
 @media (min-width: 640px) {
   .menu {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    align-items: start;
+    gap: 18px;
+  }
+
+  .item {
+    padding: 20px 18px 20px 22px;
   }
 
   .hero {
@@ -718,11 +726,91 @@ button {
 @media (min-width: 1000px) {
   .menu {
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 12px 40px;
+  }
+
+  .chips {
+    padding: 22px 40px 16px;
+    gap: 10px;
   }
 
   .hero__blob--orange { width: 180px; height: 180px; left: -90px; top: 110px; }
   .hero__blob--lime { width: 220px; height: 220px; right: -80px; top: -100px; }
   .hero__blob--peach { width: 140px; height: 140px; bottom: -70px; }
+}
+
+/* Formes décoratives dans les marges latérales, seulement
+   quand le contenu (max 1100px) laisse de la place libre */
+@media (min-width: 1240px) {
+  .side-decor {
+    display: block;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page, .disclaimer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .side-decor__shape {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .side-decor__shape--orange {
+    width: 130px;
+    height: 130px;
+    background: var(--orange);
+    left: -65px;
+    top: 38%;
+    clip-path: inset(0 0 0 50%);
+  }
+
+  .side-decor__shape--lime {
+    width: 170px;
+    height: 170px;
+    background: var(--lime);
+    right: -85px;
+    top: 26%;
+    clip-path: inset(0 50% 0 0);
+  }
+
+  .side-decor__shape--lavender {
+    width: 90px;
+    height: 90px;
+    background: var(--lavender);
+    left: 14px;
+    bottom: 10%;
+    clip-path: inset(50% 0 0 0);
+  }
+
+  .side-decor__shape--peach {
+    width: 80px;
+    height: 80px;
+    background: var(--peach);
+    right: 18px;
+    bottom: 26%;
+  }
+
+  .side-decor__shape--blue {
+    width: 64px;
+    height: 64px;
+    background: var(--blue);
+    left: 30px;
+    top: 62%;
+  }
+
+  .side-decor__shape--teal {
+    width: 120px;
+    height: 120px;
+    background: var(--teal);
+    right: -60px;
+    bottom: -60px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
