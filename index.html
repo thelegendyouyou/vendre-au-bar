@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bar du Théâtre Desjardins — Commander</title>
-<meta name="description" content="Commandez vos consommations pour le bar du Théâtre Desjardins, directement depuis votre siège.">
+<meta name="description" content="Commandez vos consommations au bar du Théâtre Desjardins et récupérez-les au comptoir.">
 <meta name="theme-color" content="#3E5AE8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%233E5AE8%22/><circle cx=%2238%22 cy=%2250%22 r=%2220%22 fill=%22white%22/><path d=%22M45 20a30 30 0 010 60 30 30 0 010-60z%22 fill=%22%23D8E438%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,28 +19,34 @@
   <div class="hero__blob hero__blob--peach" aria-hidden="true"></div>
   <div class="hero__blob hero__blob--lime" aria-hidden="true"></div>
 
-  <div class="logo" aria-label="Théâtre Desjardins">
-    <span class="logo__mark" aria-hidden="true">
-      <span class="logo__dot"></span>
-      <span class="logo__crescent"></span>
-    </span>
-    <span class="logo__text">
-      Théâtre<br>Desjardins
-      <small>LaSalle · Montréal</small>
-    </span>
-  </div>
+  <div class="hero__inner">
+    <div class="logo" aria-label="Théâtre Desjardins">
+      <span class="logo__mark" aria-hidden="true">
+        <span class="logo__dot"></span>
+        <span class="logo__crescent"></span>
+      </span>
+      <span class="logo__text">
+        Théâtre<br>Desjardins
+        <small>LaSalle · Montréal</small>
+      </span>
+    </div>
 
-  <div class="hero__content">
-    <h1>Bienvenue au bar<br>du Théâtre Desjardins&nbsp;!</h1>
-    <p class="hero__subtitle">Commandez depuis votre siège, on vous apporte ça en salle.</p>
+    <div class="hero__content">
+      <h1>Bienvenue au bar<br>du Théâtre Desjardins&nbsp;!</h1>
+      <p class="hero__subtitle">Commandez en ligne et récupérez votre commande au comptoir du bar. Bon spectacle&nbsp;!</p>
+    </div>
   </div>
 </header>
 
-<nav class="jumpnav" id="jumpnav" aria-label="Sections du menu"></nav>
+<div class="page">
+  <nav class="chips" id="chips" aria-label="Catégories du menu"></nav>
 
-<main id="menuRoot"></main>
+  <main>
+    <ul class="menu" id="menu"></ul>
+  </main>
 
-<p class="disclaimer">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>Une pièce d'identité pourra être demandée.</p>
+  <p class="disclaimer">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br>Une pièce d'identité pourra être demandée.</p>
+</div>
 
 <button class="cart-bar" id="cartBar" hidden>
   <span class="cart-bar__count" id="cartCount">0</span>
@@ -85,7 +91,7 @@
       <span>Total</span>
       <strong id="confirmTotal"></strong>
     </div>
-    <p class="confirm__msg">On vous apporte ça en salle. Bon spectacle&nbsp;!</p>
+    <p class="confirm__msg">Présentez votre numéro de confirmation au comptoir du bar pour récupérer votre commande. Bon spectacle&nbsp;!</p>
     <button class="btn-confirm btn-confirm--ghost" id="newOrder">Nouvelle commande</button>
   </div>
 </section>

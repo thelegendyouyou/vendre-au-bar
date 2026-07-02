@@ -1,149 +1,85 @@
-const SECTIONS = [
-  {
-    id: "alcools",
-    title: "Alcools",
-    theme: "blue",
-    subgroups: [
-      {
-        label: "Bières",
-        items: [
-          { id: "stella", name: "Stella", price: 11 },
-          { id: "corona", name: "Corona", price: 11 },
-          { id: "biere-al", name: "Bière AL", price: 8 },
-          { id: "benelux-neipa", name: "Benelux NEIPA (IPA)", price: 9.5 },
-          { id: "fanelli", name: "Fanelli", desc: "Rousse, blanche ou blonde", price: 8 },
-          { id: "biere-sans-alcool", name: "Bière sans alcool", price: 6 }
-        ]
-      },
-      {
-        label: "Cocktails simples",
-        items: [
-          { id: "cocktail-simple", name: "Cocktail simple", desc: "Au choix — demandez à votre serveur", price: 8 }
-        ]
-      },
-      {
-        label: "Prêts-à-boire",
-        items: [
-          { id: "amaretto-sour-peach", name: "Amaretto Sour Peach", price: 7.5 },
-          { id: "paloma", name: "Paloma", price: 7.5 },
-          { id: "clamato", name: "Clamato", price: 7 }
-        ]
-      },
-      {
-        label: "Cidre",
-        items: [
-          { id: "rabaska", name: "Rabaska", price: 7.5 }
-        ]
-      },
-      {
-        label: "Vins rouges",
-        items: [
-          { id: "pinot-noir", name: "Pinot Noir", price: 9 },
-          { id: "sangre-de-toro", name: "Sangre De Toro", price: 7 }
-        ]
-      },
-      {
-        label: "Vins blancs",
-        items: [
-          { id: "chardonnay", name: "Chardonnay", price: 9 },
-          { id: "pinot-grigio", name: "Pinot Grigio", price: 7 }
-        ]
-      }
-    ]
-  },
-  {
-    id: "boissons",
-    title: "Alcools et boissons",
-    theme: "teal",
-    subgroups: [
-      {
-        label: "Digestif",
-        items: [
-          { id: "digestif", name: "Digestif", desc: "Prix variés — demandez au bar", price: null }
-        ]
-      },
-      {
-        label: "Cafés alcoolisés",
-        items: [
-          { id: "cafe-alcoolise", name: "Café alcoolisé", price: 7 }
-        ]
-      },
-      {
-        label: "Boissons et jus",
-        items: [
-          { id: "coke", name: "Coke", price: 3 },
-          { id: "coke-diete", name: "Coke Diète", price: 3 },
-          { id: "7up", name: "7up", price: 3 },
-          { id: "ginger-ale", name: "Ginger Ale", price: 3 },
-          { id: "montellier", name: "Montellier", price: 3 },
-          { id: "jus", name: "Jus", desc: "Orange, pomme ou canneberge", price: 3 },
-          { id: "eau", name: "Bouteille d'eau réutilisable", price: 6 }
-        ]
-      },
-      {
-        label: "Boissons chaudes",
-        items: [
-          { id: "capuccino", name: "Capuccino", price: 4 },
-          { id: "latte", name: "Latte", price: 4 },
-          { id: "americano", name: "Americano", price: 3 },
-          { id: "cafe-filtre", name: "Café filtre", price: 2.5 },
-          { id: "expresso", name: "Expresso simple", price: 2.5 },
-          { id: "the", name: "Thé", price: 2.5 },
-          { id: "chocolat-chaud", name: "Chocolat chaud", price: 2.5 }
-        ]
-      }
-    ]
-  },
-  {
-    id: "cocktails-signatures",
-    title: "Cocktails signatures",
-    theme: "lavender",
-    subgroups: [
-      {
-        label: null,
-        items: [
-          { id: "passion-grimaldi", name: "Le Passion Grimaldi", desc: "Liqueur passion, gin Cirka, tonic", price: 10 },
-          { id: "margarita-epice", name: "Le Margarita Épicé", desc: "Vodka au chili, jus d'orange, ginger ale, jus de lime", price: 9 },
-          { id: "rouge-savoureux", name: "Le Rouge Savoureux", desc: "Tequila, jus de canneberge, grenadine, lime", price: 10 },
-          { id: "opera", name: "L'Opéra", desc: "Vodka, ginger ale, lime", price: 9 },
-          { id: "royal-menthe", name: "Le Royal Menthe", desc: "Crème de menthe, amaretto, tonic", price: 10 },
-          { id: "cour-et-jardin", name: "Le Cour et Jardin", desc: "Vodka, liqueur menthe, soda, lime", price: 9 }
-        ]
-      }
-    ]
-  },
-  {
-    id: "grignotines",
-    title: "Grignotines",
-    theme: "cream",
-    subgroups: [
-      {
-        label: null,
-        items: [
-          { id: "popcorn", name: "Pop Corn", price: 4 },
-          { id: "croustilles", name: "Croustilles", price: 3 },
-          { id: "bonbon", name: "Bonbon", price: 3 }
-        ]
-      }
-    ]
-  }
+const CATEGORIES = [
+  { id: "bieres", label: "Bières", accent: "#3E5AE8" },
+  { id: "cocktails-simples", label: "Cocktails simples", accent: "#F2801F" },
+  { id: "prets-a-boire", label: "Prêts-à-boire", accent: "#F2801F" },
+  { id: "cidre", label: "Cidre", accent: "#5C9AA0" },
+  { id: "vins", label: "Vins", accent: "#B48CD1" },
+  { id: "cocktails-signatures", label: "Cocktails signatures", accent: "#5C9AA0" },
+  { id: "boissons", label: "Boissons et jus", accent: "#3E5AE8" },
+  { id: "boissons-chaudes", label: "Boissons chaudes", accent: "#F2801F" },
+  { id: "grignotines", label: "Grignotines", accent: "#C1554F" }
 ];
 
-const ITEMS_BY_ID = {};
-SECTIONS.forEach((section) => {
-  section.subgroups.forEach((group) => {
-    group.items.forEach((item) => {
-      ITEMS_BY_ID[item.id] = item;
-    });
-  });
-});
+const MENU = [
+  // Bières
+  { id: "stella", name: "Stella", cat: "bieres", price: 11 },
+  { id: "corona", name: "Corona", cat: "bieres", price: 11 },
+  { id: "biere-al", name: "Bière AL", cat: "bieres", price: 8 },
+  { id: "benelux-neipa", name: "Benelux NEIPA (IPA)", cat: "bieres", price: 9.5 },
+  { id: "fanelli", name: "Fanelli", desc: "Rousse, blanche ou blonde", cat: "bieres", price: 8 },
+  { id: "biere-sans-alcool", name: "Bière sans alcool", cat: "bieres", price: 6 },
+
+  // Cocktails simples
+  { id: "cocktail-simple", name: "Cocktail simple", desc: "Au choix — demandez au comptoir", cat: "cocktails-simples", price: 8 },
+  { id: "cafe-alcoolise", name: "Café alcoolisé", cat: "cocktails-simples", price: 7 },
+  { id: "digestif", name: "Digestif", desc: "Demandez au comptoir", cat: "cocktails-simples", price: null },
+
+  // Prêts-à-boire
+  { id: "amaretto-sour-peach", name: "Amaretto Sour Peach", cat: "prets-a-boire", price: 7.5 },
+  { id: "paloma", name: "Paloma", cat: "prets-a-boire", price: 7.5 },
+  { id: "clamato", name: "Clamato", cat: "prets-a-boire", price: 7 },
+
+  // Cidre
+  { id: "rabaska", name: "Rabaska", cat: "cidre", price: 7.5 },
+
+  // Vins
+  { id: "pinot-noir", name: "Pinot Noir", desc: "Vin rouge", cat: "vins", price: 9 },
+  { id: "sangre-de-toro", name: "Sangre De Toro", desc: "Vin rouge", cat: "vins", price: 7 },
+  { id: "chardonnay", name: "Chardonnay", desc: "Vin blanc", cat: "vins", price: 9 },
+  { id: "pinot-grigio", name: "Pinot Grigio", desc: "Vin blanc", cat: "vins", price: 7 },
+
+  // Cocktails signatures
+  { id: "passion-grimaldi", name: "Le Passion Grimaldi", desc: "Liqueur passion, gin Cirka, tonic", cat: "cocktails-signatures", price: 10 },
+  { id: "margarita-epice", name: "Le Margarita Épicé", desc: "Vodka au chili, jus d'orange, ginger ale, jus de lime", cat: "cocktails-signatures", price: 9 },
+  { id: "rouge-savoureux", name: "Le Rouge Savoureux", desc: "Tequila, jus de canneberge, grenadine, lime", cat: "cocktails-signatures", price: 10 },
+  { id: "opera", name: "L'Opéra", desc: "Vodka, ginger ale, lime", cat: "cocktails-signatures", price: 9 },
+  { id: "royal-menthe", name: "Le Royal Menthe", desc: "Crème de menthe, amaretto, tonic", cat: "cocktails-signatures", price: 10 },
+  { id: "cour-et-jardin", name: "Le Cour et Jardin", desc: "Vodka, liqueur menthe, soda, lime", cat: "cocktails-signatures", price: 9 },
+
+  // Boissons et jus
+  { id: "coke", name: "Coke", cat: "boissons", price: 3 },
+  { id: "coke-diete", name: "Coke Diète", cat: "boissons", price: 3 },
+  { id: "7up", name: "7up", cat: "boissons", price: 3 },
+  { id: "ginger-ale", name: "Ginger Ale", cat: "boissons", price: 3 },
+  { id: "montellier", name: "Montellier", cat: "boissons", price: 3 },
+  { id: "jus", name: "Jus", desc: "Orange, pomme ou canneberge", cat: "boissons", price: 3 },
+  { id: "eau", name: "Bouteille d'eau réutilisable", cat: "boissons", price: 6 },
+
+  // Boissons chaudes
+  { id: "capuccino", name: "Capuccino", cat: "boissons-chaudes", price: 4 },
+  { id: "latte", name: "Latte", cat: "boissons-chaudes", price: 4 },
+  { id: "americano", name: "Americano", cat: "boissons-chaudes", price: 3 },
+  { id: "cafe-filtre", name: "Café filtre", cat: "boissons-chaudes", price: 2.5 },
+  { id: "expresso", name: "Expresso simple", cat: "boissons-chaudes", price: 2.5 },
+  { id: "the", name: "Thé", cat: "boissons-chaudes", price: 2.5 },
+  { id: "chocolat-chaud", name: "Chocolat chaud", cat: "boissons-chaudes", price: 2.5 },
+
+  // Grignotines
+  { id: "popcorn", name: "Pop Corn", cat: "grignotines", price: 4 },
+  { id: "croustilles", name: "Croustilles", cat: "grignotines", price: 3 },
+  { id: "bonbon", name: "Bonbon", cat: "grignotines", price: 3 }
+];
+
+const CATS_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
+const ITEMS_BY_ID = Object.fromEntries(MENU.map((m) => [m.id, m]));
 
 const money = (n) => n.toFixed(2).replace(".", ",") + " $";
 
 const cart = {}; // id -> qty
+let activeFilter = "all";
 
-const jumpnavEl = document.getElementById("jumpnav");
-const menuRootEl = document.getElementById("menuRoot");
+const chipsEl = document.getElementById("chips");
+const menuEl = document.getElementById("menu");
 const cartBar = document.getElementById("cartBar");
 const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
@@ -160,59 +96,71 @@ const newOrderBtn = document.getElementById("newOrder");
 
 function controlsHtml(item) {
   if (item.price == null) {
-    return `<span class="row__note">Prix variés</span>`;
+    return `<span class="item__note">Prix variés</span>`;
   }
   const qty = cart[item.id] || 0;
   if (qty === 0) {
-    return `<button class="add-btn-sm" data-add="${item.id}" aria-label="Ajouter ${item.name}">+</button>`;
+    return `<button class="add-btn" data-add="${item.id}">Ajouter</button>`;
   }
   return `
-    <div class="stepper stepper--sm">
+    <div class="stepper">
       <button data-dec="${item.id}" aria-label="Retirer un ${item.name}">–</button>
       <span>${qty}</span>
       <button data-inc="${item.id}" aria-label="Ajouter un ${item.name}">+</button>
     </div>`;
 }
 
-function renderMenu() {
-  jumpnavEl.innerHTML = SECTIONS.map((s, i) => `
-    <button class="chip${i === 0 ? " is-active" : ""}" data-jump="${s.id}">${s.title}</button>
-  `).join("");
+function renderChips() {
+  chipsEl.innerHTML = [
+    `<button class="chip is-active" data-filter="all" aria-pressed="true">Tout</button>`,
+    ...CATEGORIES.map((c) => `
+      <button class="chip" data-filter="${c.id}" aria-pressed="false">${c.label}</button>
+    `)
+  ].join("");
+}
 
-  menuRootEl.innerHTML = SECTIONS.map((section) => `
-    <section class="menu-section menu-section--${section.theme}" id="${section.id}">
-      <div class="menu-section__inner">
-        <h2 class="menu-section__title">${section.title}</h2>
-        ${section.subgroups.map((group) => `
-          <div class="subgroup">
-            ${group.label ? `<span class="pill-label">${group.label}</span>` : ""}
-            <ul class="rows">
-              ${group.items.map((item) => `
-                <li class="row">
-                  <div class="row__text">
-                    <p class="row__name">${item.name}</p>
-                    ${item.desc ? `<p class="row__desc">${item.desc}</p>` : ""}
-                  </div>
-                  <div class="row__right">
-                    ${item.price != null ? `<span class="row__price">${money(item.price)}</span>` : ""}
-                    <span data-controls="${item.id}">${controlsHtml(item)}</span>
-                  </div>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
-        `).join("")}
+function renderMenu() {
+  menuEl.innerHTML = MENU.map((item) => {
+    const cat = CATS_BY_ID[item.cat];
+    return `
+    <li class="item" style="--accent:${cat.accent}" data-category="${item.cat}">
+      <div class="item__body">
+        <span class="item__category">${cat.label}</span>
+        <p class="item__name">${item.name}</p>
+        ${item.desc ? `<p class="item__desc">${item.desc}</p>` : ""}
+        ${item.price != null ? `<p class="item__price">${money(item.price)}</p>` : ""}
       </div>
-    </section>
-  `).join("");
+      <div class="item__controls" data-controls="${item.id}">${controlsHtml(item)}</div>
+    </li>`;
+  }).join("");
+  applyFilter();
+}
+
+function applyFilter() {
+  menuEl.querySelectorAll(".item").forEach((li) => {
+    const show = activeFilter === "all" || li.dataset.category === activeFilter;
+    li.hidden = !show;
+  });
 }
 
 function updateControls(id) {
-  const target = menuRootEl.querySelector(`[data-controls="${id}"]`);
+  const target = menuEl.querySelector(`[data-controls="${id}"]`);
   if (target) target.innerHTML = controlsHtml(ITEMS_BY_ID[id]);
 }
 
-menuRootEl.addEventListener("click", (e) => {
+chipsEl.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  activeFilter = chip.dataset.filter;
+  chipsEl.querySelectorAll(".chip").forEach((c) => {
+    const active = c === chip;
+    c.classList.toggle("is-active", active);
+    c.setAttribute("aria-pressed", String(active));
+  });
+  applyFilter();
+});
+
+menuEl.addEventListener("click", (e) => {
   const add = e.target.closest("[data-add]");
   const inc = e.target.closest("[data-inc]");
   const dec = e.target.closest("[data-dec]");
@@ -295,25 +243,6 @@ function validateForm() {
 
 nameInput.addEventListener("input", validateForm);
 
-// ----- Jump nav + scroll-spy -----
-
-jumpnavEl.addEventListener("click", (e) => {
-  const chip = e.target.closest("[data-jump]");
-  if (!chip) return;
-  document.getElementById(chip.dataset.jump).scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    jumpnavEl.querySelectorAll(".chip").forEach((c) => {
-      c.classList.toggle("is-active", c.dataset.jump === entry.target.id);
-    });
-  });
-}, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
-
-// ----- Confirm order -----
-
 confirmBtn.addEventListener("click", () => {
   const entries = cartEntries();
   const total = cartTotalValue();
@@ -334,16 +263,12 @@ confirmBtn.addEventListener("click", () => {
 newOrderBtn.addEventListener("click", () => {
   Object.keys(cart).forEach((id) => delete cart[id]);
   nameInput.value = "";
-  SECTIONS.forEach((section) =>
-    section.subgroups.forEach((group) =>
-      group.items.forEach((item) => updateControls(item.id))
-    )
-  );
+  MENU.forEach((item) => updateControls(item.id));
   renderCart();
   confirmScreen.hidden = true;
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+renderChips();
 renderMenu();
-document.querySelectorAll(".menu-section").forEach((s) => sectionObserver.observe(s));
 renderCart();
